@@ -28,10 +28,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http
 			.formLogin() // 폼 로그인 설정
-			.loginPage("/loginPage") // 로그인 페이지 설정
+			// .loginPage("/loginPage") // 로그인 페이지 설정
 			.defaultSuccessUrl("/") // 성공시 리다이렉트할 Url
 			.failureUrl("/login") // 실패시 url
-			.usernameParameter("userId") // username으로 쓸 parameter명
+			.usernameParameter("userId") // username으로 쓸 parameter명 기본페이지에서 name으로 자동으로 설정해준다.
 			.passwordParameter("passwd") // password로 쓸 parameter명
 			.loginProcessingUrl("/login_proc")
 			.successHandler(new AuthenticationSuccessHandler() {
@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					response.sendRedirect("/login");
 				}
 			})
+			.permitAll()
 			;
 	}
 
